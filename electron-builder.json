@@ -1,0 +1,15 @@
+{
+  "appId": "com.example.ElectronAutoUpdate",
+  "win": {
+    "target": ["nsis"]
+  },
+  "nsis" : {
+    "oneClick": false,
+    "allowElevation": true,
+    "allowToChangeInstallationDirectory": true
+  },
+  "publish": {
+    "provider": "github",
+    "token": "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"
+  }
+}
