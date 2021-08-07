@@ -8,7 +8,7 @@
     "url" : "https://github.com/manojp1988/electron-updater.git"
   },
   "scripts": {
-    "start": "electron .",
+    "start": "electron . --watch",
     "build": "electron-builder build --win --publish never",
     "deploy": "electron-builder build --win --publish always"
   },
