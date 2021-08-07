@@ -4,11 +4,11 @@
   "description": "",
   "main": "main.js",
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/manojp1988/electron-updater.git"
+    "type": "git",
+    "url": "https://github.com/manojp1988/electron-updater.git"
   },
   "scripts": {
-    "start": "electron . --watch",
+    "start": "electron .",
     "build": "electron-builder build --win --publish never",
     "deploy": "electron-builder build --win --publish always"
   },

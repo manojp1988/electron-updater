@@ -1,35 +1,48 @@
-const {
-  app,
-  BrowserWindow,
-  ipcMain
-} = require('electron');
-const {
-  autoUpdater
-} = require('electron-updater');
+const {app,BrowserWindow,ipcMain} = require('electron');
+const {autoUpdater} = require('electron-updater');
+const http = require('https');
+const fs = require('fs');
+const EventEmitter = require('events');
 
-let mainWindow;
+let mainWindow, splash;
+const loadingEvents = new EventEmitter();
 
 function createWindow() {
   mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
+    show: false,
     icon: __dirname + '/build/app.ico',
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: false,
     }
   });
+
+  splash = new BrowserWindow({
+    width: 500,
+    height: 400,
+    frame: false
+  })
+
   mainWindow.loadFile('index.html');
+  splash.loadFile('splash.html');
+
   mainWindow.on('closed', function () {
     mainWindow = null;
   });
-  mainWindow.once('ready-to-show', () => {
+
+  loadingEvents.on('finished', () => {
+    splash.destroy();
+    mainWindow.show();
     autoUpdater.checkForUpdatesAndNotify();
   });
+  
 }
 
 app.on('ready', () => {
   createWindow();
+  download('https://512pixels.net/downloads/macos-wallpapers/10-15-Day.jpg');
 });
 
 app.on('window-all-closed', function () {
@@ -61,3 +74,14 @@ autoUpdater.on('update-downloaded', () => {
 ipcMain.on('restart_app', () => {
   autoUpdater.quitAndInstall();
 });
+
+
+const download = url => {
+  const file = fs.createWriteStream('big-file.jpg');
+
+  http.get(url, function (response) {
+    loadingEvents.emit('finished');
+  }).on('error', function (err) {
+    fs.unlink(dest)
+  })
+}
