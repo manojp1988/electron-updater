@@ -5,7 +5,7 @@
   "main": "main.js",
   "repository": {
     "type" : "git",
-    "url" : "https://github.com/johndyer24/electron-auto-update-example.git"
+    "url" : "https://github.com/manojp1988/electron-updater.git"
   },
   "scripts": {
     "start": "electron .",
