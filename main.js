@@ -42,7 +42,7 @@ function createWindow() {
 
 app.on('ready', () => {
   createWindow();
-  download('https://512pixels.net/downloads/macos-wallpapers/10-15-Day.jpg');
+  setTimeout(() => loadingEvents.emit('finished'), 2000);
 });
 
 app.on('window-all-closed', function () {
@@ -74,14 +74,3 @@ autoUpdater.on('update-downloaded', () => {
 ipcMain.on('restart_app', () => {
   autoUpdater.quitAndInstall();
 });
-
-
-const download = url => {
-  const file = fs.createWriteStream('big-file.jpg');
-
-  http.get(url, function (response) {
-    loadingEvents.emit('finished');
-  }).on('error', function (err) {
-    fs.unlink(dest)
-  })
-}
