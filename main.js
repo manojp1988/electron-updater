@@ -1,5 +1,5 @@
 const {app,BrowserWindow,ipcMain} = require('electron');
-const {autoUpdater} = require('electron-differential-updater');
+const { autoUpdater } = require("@imjs/electron-differential-updater");
 const http = require('https');
 const fs = require('fs');
 const EventEmitter = require('events');
