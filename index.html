@@ -72,6 +72,12 @@
       notification.classList.remove('hidden');
     });
 
+    ipcRenderer.on('download-progress', (event, arg) => {
+      ipcRenderer.removeAllListeners('download-progress');
+      message.innerText = arg;
+      notification.classList.remove('hidden');
+    })
+
     function closeNotification() {
       notification.classList.add('hidden');
     }
