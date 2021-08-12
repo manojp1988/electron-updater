@@ -20,6 +20,6 @@
   },
   "dependencies": {
     "@imjs/electron-differential-updater": "^5.1.7",
-    "electron-updater": "^4.3.9"
+    "electron-builder": "^22.11.7"
   }
 }
